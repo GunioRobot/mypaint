@@ -1,1 +1,5 @@
-Projeto de um Paint usando HTML5 + Java.
+MyPaint - HTML5
+========================================
+Projeto de um Paint usando HTML5 + Java com VRaptor + Spring + Hibernate/Jpa.
+Tentarei colocar em prática os aprendizados relacionados a testes como TDD, Testes de Aceitação e Integração.
+Algumas configurações foram "emprestadas" da galera da TriadWorks. \o/
