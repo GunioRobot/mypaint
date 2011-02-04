@@ -1,5 +1,6 @@
 package br.com.mypaint.controller;
 
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -21,18 +22,17 @@ public class PessoaController {
 		this.pessoaService = pessoaService;
 	}
 
+	@Path("/pessoa/salvar")
 	public Pessoa salvar(Pessoa pessoa) {
 		try {
 			pessoaService.salvar(pessoa);
 			
-			result.include("sucesso", "Pessoa criado com sucesso !");
+			result.include("sucesso", "Pessoa criada com sucesso !");
 		} catch (Exception e) {
-			result.include("erros", e.getMessage());
+			result.include("erro", e.getMessage());
 		}
 		
 		return pessoa;
 	}
-	
-	
 	
 }

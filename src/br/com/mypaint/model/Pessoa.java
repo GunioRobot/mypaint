@@ -5,18 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PESSOA")
 public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	
-	@Column
+	@Column(name = "NOME")
 	private String nome;
 	
-	@Column
+	@Column(name = "EMAIL")
 	private String email;
 	
 	public String getEmail() {
@@ -27,11 +29,11 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

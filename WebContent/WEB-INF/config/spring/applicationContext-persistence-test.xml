@@ -14,20 +14,21 @@
 						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 							
 	<!-- ********************************************* -->
-	<!-- Configuração do DataSource -->
+	<!-- Configuração do DataSource de Teste -->
 	<!-- ********************************************* -->
+	
+	<!-- Adiciona DBUnitManager -->
+	<context:component-scan base-package="base.dbunit" />
 	 
-	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mypaint" />
-		<property name="user" value="root" />
-        <property name="password" value="root" />
-		<property name="maxPoolSize" value="10" />
-		<property name="maxStatements" value="0" />
-		<property name="minPoolSize" value="3" />
-		<property name="checkoutTimeout" value="30000" />
-	</bean>
-    
+	 <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SingleConnectionDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mypaint" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+		<property name="suppressClose" value="true" />
+	 </bean>
+	 
 	<!-- Configuraçãoes relativas a acesso a dados -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -41,7 +42,7 @@
 			<bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLInnoDBDialect" />
 			</bean>
 		</property>
 		<property name="jpaProperties">
@@ -53,6 +54,8 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- create-drop | validate -->
 	
 	<!-- Transaction Manager exclusivo para JPA -->
 	<bean id="transactionManager"
