@@ -49,6 +49,8 @@ public class PessoaServiceImplTest {
 		Pessoa pessoaRetorno = pessoaService.pesquisarPorId(pessoa.getId());
 		
 		assertNotNull("pessoa deveria ser diferente de nulo", pessoaRetorno);
+		
+		verificarPessoa(pessoaRetorno, "Iago Teixeira Araújo", "iago@gmail.com");
 	}
 	
 	@Test

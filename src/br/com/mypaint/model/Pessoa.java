@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +15,7 @@ public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private Integer id;
 	
 	@Column(name = "NOME")
@@ -21,6 +24,18 @@ public class Pessoa {
 	@Column(name = "EMAIL")
 	private String email;
 	
+	@OneToOne
+	@JoinColumn(name = "CD_USUARIO", referencedColumnName = "ID")
+	private Usuario usuario;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public String getEmail() {
 		return email;
 	}
