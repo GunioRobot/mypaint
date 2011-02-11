@@ -1,5 +1,7 @@
 package br.com.mypaint.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,16 @@ public class Usuario {
 	
 	@Column(name = "PASSWORD")
 	private String password;
+
+	private List<Pintura> listaDePinturas;
+	
+	public List<Pintura> getListaDePinturas() {
+		return listaDePinturas;
+	}
+
+	public void setListaDePinturas(List<Pintura> listaDePinturas) {
+		this.listaDePinturas = listaDePinturas;
+	}
 
 	public Integer getId() {
 		return id;
