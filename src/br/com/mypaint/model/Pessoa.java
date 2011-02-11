@@ -1,5 +1,6 @@
 package br.com.mypaint.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Pessoa {
 	@Column(name = "EMAIL")
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CD_USUARIO", referencedColumnName = "ID")
 	private Usuario usuario;
 	
