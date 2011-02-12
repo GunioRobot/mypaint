@@ -1,5 +1,6 @@
 package br.com.mypaint.controller;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -36,13 +37,25 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void deveriaSalvarUmUsuario() {
-		Usuario pessoa = criaUsuarioComPessoa();
+	public void deveriaSalvarUmUsuarioComPessoa() {
+		Usuario usuario = criaUsuarioComPessoa();
 		
-		when(usuarioService.salvar(pessoa)).thenReturn(pessoa);
-		controller.salvar(pessoa);
+		when(usuarioService.salvar(usuario)).thenReturn(usuario);
+		controller.salvar(usuario);
 		
-		assertTrue("pessoa salva com sucesso", result.included().containsKey("sucesso"));
+		assertTrue("usuario salva com sucesso", result.included().containsKey("sucesso"));
+		assertFalse("usuario salva com sucesso", result.included().containsKey("erro"));
+	}
+	
+	@Test
+	public void naoDeveriaSalvarUmUsuarioSemPessoa() {
+		Usuario usuario = criaUsuarioSemPessoa();
+		
+		when(usuarioService.salvar(usuario)).thenReturn(usuario);
+		controller.salvar(usuario);
+		
+		assertTrue("usuario nao deve ser salvo com sucesso", result.included().containsKey("erro"));
+		assertFalse("usuario nao deve ser salvo com sucesso", result.included().containsKey("sucesso"));
 	}
 	
 	public Usuario criaUsuarioComPessoa() {
@@ -55,6 +68,15 @@ public class UsuarioControllerTest {
 		usuario.setUsername("renanigt");
 		usuario.setPassword("123");
 		usuario.setPessoa(pessoa);
+		
+		return usuario;
+	}
+	
+	public Usuario criaUsuarioSemPessoa() {
+		Usuario usuario = new Usuario();
+		
+		usuario.setUsername("iagot");
+		usuario.setPassword("123");
 		
 		return usuario;
 	}

@@ -22,12 +22,16 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 
-	@Path("/pessoa/salvar")
+	@Path("/usuario/salvar")
 	public Usuario salvar(Usuario usuario) {
 		try {
+			if(usuario.getPessoa() == null) {
+				throw new RuntimeException("Não foi possível inserir o Usuário. Verifique todos os campos.");
+			}
+			
 			usuarioService.salvar(usuario);
 			
-			result.include("sucesso", "Pessoa criada com sucesso !");
+			result.include("sucesso", "Usário criado com sucesso !");
 		} catch (Exception e) {
 			result.include("erro", e.getMessage());
 		}
