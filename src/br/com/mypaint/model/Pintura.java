@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Pintura")
+@Table(name = "PINTURA")
 public class Pintura {
 
 	@Id
@@ -17,7 +17,7 @@ public class Pintura {
 	private Integer id;
 	
 	@Column(name = "DESCRICAO")
-	private String descrição;
+	private String descricao;
 	
 	@Column(name = "CAMINHO")
 	private String caminho;
@@ -30,12 +30,12 @@ public class Pintura {
 		this.id = id;
 	}
 
-	public String getDescrição() {
-		return descrição;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getCaminho() {

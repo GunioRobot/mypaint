@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<PESSOA ID="1" NOME="Renan Teixeira Lima Verde Montenegro" EMAIL="fulano@gmail.com" />
+	<USUARIO ID="9999" USERNAME="RENANIGT" PASSWORD="123" CD_PESSOA="1" />
+	
+</dataset>

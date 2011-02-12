@@ -2,6 +2,7 @@ package br.com.mypaint.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +22,18 @@ public class Usuario {
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "USERNAME")
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
 	
-	@Column(name = "PASSWORD")
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CD_PESSOA", nullable = false)
+	private Pessoa pessoa;
+	
 	@OneToMany
-	@JoinColumn(name = "CD_PINTURA", referencedColumnName = "ID")
+	@JoinColumn(name = "CD_PINTURA")
 	private List<Pintura> listaDePinturas;
 	
 	public List<Pintura> getListaDePinturas() {
@@ -60,6 +66,14 @@ public class Usuario {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 }

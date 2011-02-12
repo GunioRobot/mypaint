@@ -4,35 +4,35 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.mypaint.model.Pessoa;
-import br.com.mypaint.service.PessoaService;
+import br.com.mypaint.model.Usuario;
+import br.com.mypaint.service.UsuarioService;
 
 @Resource
-public class PessoaController {
+public class UsuarioController {
 
 	private final Result result;
 	
 	private Validator validator;
 	
-	private PessoaService pessoaService;
+	private UsuarioService usuarioService;
 	
-	public PessoaController(Result result, Validator validator, PessoaService pessoaService) {
+	public UsuarioController(Result result, Validator validator, UsuarioService usuarioService) {
 		this.result = result;
 		this.validator = validator;
-		this.pessoaService = pessoaService;
+		this.usuarioService = usuarioService;
 	}
 
 	@Path("/pessoa/salvar")
-	public Pessoa salvar(Pessoa pessoa) {
+	public Usuario salvar(Usuario usuario) {
 		try {
-			pessoaService.salvar(pessoa);
+			usuarioService.salvar(usuario);
 			
 			result.include("sucesso", "Pessoa criada com sucesso !");
 		} catch (Exception e) {
 			result.include("erro", e.getMessage());
 		}
 		
-		return pessoa;
+		return usuario;
 	}
 	
 }
