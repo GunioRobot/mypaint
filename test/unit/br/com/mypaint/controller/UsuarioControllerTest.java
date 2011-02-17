@@ -77,6 +77,7 @@ public class UsuarioControllerTest {
 		
 		usuario.setUsername("iagot");
 		usuario.setPassword("123");
+		usuario.setPessoa(null);
 		
 		return usuario;
 	}

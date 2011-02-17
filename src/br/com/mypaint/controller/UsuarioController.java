@@ -5,7 +5,6 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.mypaint.model.Pessoa;
 import br.com.mypaint.model.Usuario;
 import br.com.mypaint.service.UsuarioService;
 
@@ -36,7 +35,7 @@ public class UsuarioController {
 	@Path("/usuario/salvar")
 	public void salvar(Usuario usuario) {
 		try {
-			if(verificaPessoaVaziaOuNula(usuario.getPessoa())) {
+			if(usuario.getPessoa() == null) {
 				throw new RuntimeException("Não foi possível inserir o Usuário. Verifique todos os campos.");
 			}
 			
@@ -48,14 +47,6 @@ public class UsuarioController {
 		}
 		
 		result.redirectTo(this).index();
-	}
-	
-	public boolean verificaPessoaVaziaOuNula(Pessoa pessoa) {
-		if("".equals(pessoa.getNome().trim()) || "".equals(pessoa.getEmail().trim()) || pessoa == null) {
-			return true;
-		}
-		
-		return false;
 	}
 	
 }
