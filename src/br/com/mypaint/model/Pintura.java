@@ -1,10 +1,14 @@
 package br.com.mypaint.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,18 @@ public class Pintura {
 	
 	@Column(name = "CAMINHO")
 	private String caminho;
+
+	@OneToMany
+	@JoinColumn(name = "CD_COMENTARIO")
+	private List<Comentario> comentarios;
+	
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 
 	public Integer getId() {
 		return id;
