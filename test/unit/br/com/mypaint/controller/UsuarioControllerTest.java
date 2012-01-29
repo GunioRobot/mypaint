@@ -20,14 +20,14 @@ import br.com.mypaint.service.UsuarioService;
 public class UsuarioControllerTest {
 
 	private Result result;
-	
+
 	private Validator validator;
-	
+
 	private UsuarioController controller;
-	
+
 	@Mock
 	private UsuarioService usuarioService;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -35,51 +35,51 @@ public class UsuarioControllerTest {
 		validator = new MockValidator();
 		controller = new UsuarioController(result, validator, usuarioService);
 	}
-	
+
 	@Test
 	public void deveriaSalvarUmUsuarioComPessoa() {
 		Usuario usuario = criaUsuarioComPessoa();
-		
+
 		when(usuarioService.salvar(usuario)).thenReturn(usuario);
 		controller.salvar(usuario);
-		
+
 		assertTrue("usuario salva com sucesso", result.included().containsKey("sucesso"));
 		assertFalse("usuario salva com sucesso", result.included().containsKey("erro"));
 	}
-	
+
 	@Test
 	public void naoDeveriaSalvarUmUsuarioSemPessoa() {
 		Usuario usuario = criaUsuarioSemPessoa();
-		
+
 		when(usuarioService.salvar(usuario)).thenReturn(usuario);
 		controller.salvar(usuario);
-		
+
 		assertTrue("usuario nao deve ser salvo com sucesso", result.included().containsKey("erro"));
 		assertFalse("usuario nao deve ser salvo com sucesso", result.included().containsKey("sucesso"));
 	}
-	
+
 	public Usuario criaUsuarioComPessoa() {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
-		
+
 		pessoa.setNome("Renan Montenegro");
 		pessoa.setEmail("renanigt@gmail.com");
-		
+
 		usuario.setUsername("renanigt");
 		usuario.setPassword("123");
 		usuario.setPessoa(pessoa);
-		
+
 		return usuario;
 	}
-	
+
 	public Usuario criaUsuarioSemPessoa() {
 		Usuario usuario = new Usuario();
-		
+
 		usuario.setUsername("iagot");
 		usuario.setPassword("123");
 		usuario.setPessoa(null);
-		
+
 		return usuario;
 	}
-	
+
 }

@@ -17,10 +17,10 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-	
+
 	@Column(name = "COMENTARIO")
 	private String comentario;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "CD_USUARIO")
 	private Usuario usuario;
@@ -48,5 +48,5 @@ public class Comentario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 }

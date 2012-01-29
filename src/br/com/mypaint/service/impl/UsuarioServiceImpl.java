@@ -19,26 +19,26 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public Usuario salvar(Usuario usuario) {
 		entityManager.persist(usuario);
-		
+
 		return usuario;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Usuario> pesquisarPorUsername(String nome) {
 		Session session = getSession();
-		
+
 		Criteria criteria = session.createCriteria(Usuario.class);
 		criteria.add(Restrictions.ilike("username", "%" + nome + "%"));
 		criteria.addOrder(Order.asc("username"));
-		
+
 		List<Usuario> listaUsuarios = criteria.list();
-		
+
 		return listaUsuarios;
 	}
-	
+
 	private Session getSession() {
 		return ((Session) entityManager.getDelegate());
 	}

@@ -19,17 +19,17 @@ public class Pintura {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-	
+
 	@Column(name = "DESCRICAO")
 	private String descricao;
-	
+
 	@Column(name = "CAMINHO")
 	private String caminho;
 
 	@OneToMany
 	@JoinColumn(name = "CD_COMENTARIO")
 	private List<Comentario> comentarios;
-	
+
 	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
@@ -61,5 +61,5 @@ public class Pintura {
 	public void setCaminho(String caminho) {
 		this.caminho = caminho;
 	}
-	
+
 }

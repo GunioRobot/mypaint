@@ -21,21 +21,21 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-	
+
 	@Column(name = "USERNAME", nullable = false)
 	private String username;
-	
+
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CD_PESSOA", nullable = false)
 	private Pessoa pessoa;
-	
+
 	@OneToMany
 	@JoinColumn(name = "CD_PINTURA")
 	private List<Pintura> listaDePinturas;
-	
+
 	public List<Pintura> getListaDePinturas() {
 		return listaDePinturas;
 	}
@@ -75,5 +75,5 @@ public class Usuario {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
+
 }

@@ -10,18 +10,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PESSOA")
 public class Pessoa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-	
+
 	@Column(name = "NOME", nullable = false)
 	private String nome;
-	
+
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -45,5 +45,5 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 }
